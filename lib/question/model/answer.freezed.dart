@@ -16,10 +16,10 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$Answer {
-// 解答済みかどうか
-  bool get isFinished => throw _privateConstructorUsedError; // 解答した駅名
-  String get answerName => throw _privateConstructorUsedError; // 解答結果
-  bool get answerResult => throw _privateConstructorUsedError;
+// 正しい解答
+  String get correctAnswer => throw _privateConstructorUsedError; // 実際の解答
+  String? get actualAnswer => throw _privateConstructorUsedError; // 解答結果
+  bool? get answerResult => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $AnswerCopyWith<Answer> get copyWith => throw _privateConstructorUsedError;
@@ -30,7 +30,7 @@ abstract class $AnswerCopyWith<$Res> {
   factory $AnswerCopyWith(Answer value, $Res Function(Answer) then) =
       _$AnswerCopyWithImpl<$Res, Answer>;
   @useResult
-  $Res call({bool isFinished, String answerName, bool answerResult});
+  $Res call({String correctAnswer, String? actualAnswer, bool? answerResult});
 }
 
 /// @nodoc
@@ -46,23 +46,23 @@ class _$AnswerCopyWithImpl<$Res, $Val extends Answer>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? isFinished = null,
-    Object? answerName = null,
-    Object? answerResult = null,
+    Object? correctAnswer = null,
+    Object? actualAnswer = freezed,
+    Object? answerResult = freezed,
   }) {
     return _then(_value.copyWith(
-      isFinished: null == isFinished
-          ? _value.isFinished
-          : isFinished // ignore: cast_nullable_to_non_nullable
-              as bool,
-      answerName: null == answerName
-          ? _value.answerName
-          : answerName // ignore: cast_nullable_to_non_nullable
+      correctAnswer: null == correctAnswer
+          ? _value.correctAnswer
+          : correctAnswer // ignore: cast_nullable_to_non_nullable
               as String,
-      answerResult: null == answerResult
+      actualAnswer: freezed == actualAnswer
+          ? _value.actualAnswer
+          : actualAnswer // ignore: cast_nullable_to_non_nullable
+              as String?,
+      answerResult: freezed == answerResult
           ? _value.answerResult
           : answerResult // ignore: cast_nullable_to_non_nullable
-              as bool,
+              as bool?,
     ) as $Val);
   }
 }
@@ -73,7 +73,7 @@ abstract class _$$_AnswerCopyWith<$Res> implements $AnswerCopyWith<$Res> {
       __$$_AnswerCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({bool isFinished, String answerName, bool answerResult});
+  $Res call({String correctAnswer, String? actualAnswer, bool? answerResult});
 }
 
 /// @nodoc
@@ -86,23 +86,23 @@ class __$$_AnswerCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? isFinished = null,
-    Object? answerName = null,
-    Object? answerResult = null,
+    Object? correctAnswer = null,
+    Object? actualAnswer = freezed,
+    Object? answerResult = freezed,
   }) {
     return _then(_$_Answer(
-      isFinished: null == isFinished
-          ? _value.isFinished
-          : isFinished // ignore: cast_nullable_to_non_nullable
-              as bool,
-      answerName: null == answerName
-          ? _value.answerName
-          : answerName // ignore: cast_nullable_to_non_nullable
+      correctAnswer: null == correctAnswer
+          ? _value.correctAnswer
+          : correctAnswer // ignore: cast_nullable_to_non_nullable
               as String,
-      answerResult: null == answerResult
+      actualAnswer: freezed == actualAnswer
+          ? _value.actualAnswer
+          : actualAnswer // ignore: cast_nullable_to_non_nullable
+              as String?,
+      answerResult: freezed == answerResult
           ? _value.answerResult
           : answerResult // ignore: cast_nullable_to_non_nullable
-              as bool,
+              as bool?,
     ));
   }
 }
@@ -111,24 +111,22 @@ class __$$_AnswerCopyWithImpl<$Res>
 
 class _$_Answer extends _Answer {
   const _$_Answer(
-      {required this.isFinished,
-      required this.answerName,
-      required this.answerResult})
+      {required this.correctAnswer, this.actualAnswer, this.answerResult})
       : super._();
 
-// 解答済みかどうか
+// 正しい解答
   @override
-  final bool isFinished;
-// 解答した駅名
+  final String correctAnswer;
+// 実際の解答
   @override
-  final String answerName;
+  final String? actualAnswer;
 // 解答結果
   @override
-  final bool answerResult;
+  final bool? answerResult;
 
   @override
   String toString() {
-    return 'Answer(isFinished: $isFinished, answerName: $answerName, answerResult: $answerResult)';
+    return 'Answer(correctAnswer: $correctAnswer, actualAnswer: $actualAnswer, answerResult: $answerResult)';
   }
 
   @override
@@ -136,17 +134,17 @@ class _$_Answer extends _Answer {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_Answer &&
-            (identical(other.isFinished, isFinished) ||
-                other.isFinished == isFinished) &&
-            (identical(other.answerName, answerName) ||
-                other.answerName == answerName) &&
+            (identical(other.correctAnswer, correctAnswer) ||
+                other.correctAnswer == correctAnswer) &&
+            (identical(other.actualAnswer, actualAnswer) ||
+                other.actualAnswer == actualAnswer) &&
             (identical(other.answerResult, answerResult) ||
                 other.answerResult == answerResult));
   }
 
   @override
   int get hashCode =>
-      Object.hash(runtimeType, isFinished, answerName, answerResult);
+      Object.hash(runtimeType, correctAnswer, actualAnswer, answerResult);
 
   @JsonKey(ignore: true)
   @override
@@ -157,17 +155,17 @@ class _$_Answer extends _Answer {
 
 abstract class _Answer extends Answer {
   const factory _Answer(
-      {required final bool isFinished,
-      required final String answerName,
-      required final bool answerResult}) = _$_Answer;
+      {required final String correctAnswer,
+      final String? actualAnswer,
+      final bool? answerResult}) = _$_Answer;
   const _Answer._() : super._();
 
-  @override // 解答済みかどうか
-  bool get isFinished;
-  @override // 解答した駅名
-  String get answerName;
+  @override // 正しい解答
+  String get correctAnswer;
+  @override // 実際の解答
+  String? get actualAnswer;
   @override // 解答結果
-  bool get answerResult;
+  bool? get answerResult;
   @override
   @JsonKey(ignore: true)
   _$$_AnswerCopyWith<_$_Answer> get copyWith =>
