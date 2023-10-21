@@ -15,18 +15,15 @@ class CustomColor {
   // 四つ橋線 : #3466b1
   static const Color yotsubashiLineColor = Color.fromARGB(255, 52, 102, 177);
 
-  // static const MaterialColor midosujiLineColor =
-  //     MaterialColor(_midosujiLineColor, <int, Color>{
-  //   50: Color(0xFFFAEAE8),
-  //   100: Color(0xFFF4CAC6),
-  //   200: Color(0xFFECA6A0),
-  //   300: Color(0xFFE4827A),
-  //   400: Color(0xFFDF685E),
-  //   500: Color(_midosujiLineColor),
-  //   600: Color(0xFFD5463B),
-  //   700: Color(0xFFCF3D32),
-  //   800: Color(0xFFCA342A),
-  //   900: Color(0xFFC0251C),
-  // });
-  // static const int _midosujiLineColor = 0xFFD94D41;
+  // 千日前線 : #d788b3
+  static const Color sennichimaeLineColor = Color.fromARGB(255, 215, 136, 179);
+
+  // 堺筋線 : #9a643c
+  static const Color sakaisujiLineColor = Color.fromARGB(255, 154, 100, 60);
+
+  // 長堀鶴見緑地線 : #c2da65
+  static const Color nagahoriTsurumiRyokuchiLineColor = Color.fromARGB(255, 194, 218, 101);
+
+  // 今里筋線 : #9a643c
+  static const Color imazatosujiLineColor = Color.fromARGB(255, 154, 100, 60);
 }

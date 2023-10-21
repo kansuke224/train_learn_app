@@ -14,7 +14,7 @@ class QuestionGroupListScreen extends ConsumerWidget {
     AsyncValue<List<StationQuestionGroup>> questionGroupList = ref.watch(questionGroupListProvider);
     return Scaffold(
       appBar: AppBar(
-        title: Text("路線図問題一覧"),
+        title: const Text("路線図問題一覧"),
       ),
       body: questionGroupList.when(
         loading: () => const CircularProgressIndicator(),
@@ -26,25 +26,14 @@ class QuestionGroupListScreen extends ConsumerWidget {
                 ListTile(
                   onTap: () => onQuestionGroupSelected(questionGroup, context, ref),
                   title: Text(questionGroup.questionGroupName),
-                  subtitle: Text("自己ベスト : ${questionGroup.questionMap.length}問中 ${questionGroup.answerScore.bestScore}問 正解"),
-                  trailing: Icon(Icons.arrow_right),
+                  subtitle:
+                      Text("自己ベスト : ${questionGroup.questionMap.length}問中 ${questionGroup.answerScore.bestScore}問 正解"),
+                  trailing: const Icon(Icons.arrow_right),
                 )
             ],
           );
         },
       ),
-      // body: ListView.builder(
-      //   itemCount: stationQuestionGroupList.length,
-      //   itemBuilder: (context, index) {
-      //     StationQuestionGroup questionGroup = stationQuestionGroupList[index].getBestScore();
-      //     return ListTile(
-      //       onTap: () => onQuestionGroupSelected(questionGroup, context, ref),
-      //       title: Text(questionGroup.questionGroupName),
-      //       subtitle: Text("ベスト正当数"),
-      //       trailing: Icon(Icons.arrow_right),
-      //     );
-      //   },
-      // ),
     );
   }
 

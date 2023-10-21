@@ -23,18 +23,18 @@ const TrainLine yotsubashiLine = TrainLine(
 
 const TrainLine sennichimaeLine = TrainLine(
   name: "千日前線",
-  color: CustomColor.midosujiLineColor,
+  color: CustomColor.sennichimaeLineColor,
 );
 
 const TrainLine sakaisujiLine = TrainLine(
   name: "堺筋線",
-  color: CustomColor.midosujiLineColor,
+  color: CustomColor.sakaisujiLineColor,
 );
 const TrainLine nagahoriTsurumiRyokuchiLine = TrainLine(
   name: "長堀鶴見緑地線",
-  color: CustomColor.midosujiLineColor,
+  color: CustomColor.nagahoriTsurumiRyokuchiLineColor,
 );
 const TrainLine imazatosujiLine = TrainLine(
   name: "今里筋線",
-  color: CustomColor.midosujiLineColor,
+  color: CustomColor.imazatosujiLineColor,
 );
