@@ -42,7 +42,7 @@ class QuestionGroup {
     );
   }
 
-  QuestionGroup setAnswerToQuestion(QuestionCode questionCode, String actualAnswer) {
+  QuestionGroup setAnswerToQuestion(String questionCode, String actualAnswer) {
     Question question = questionList.firstWhere(
       (question) => question.questionCode == questionCode,
     );
@@ -59,6 +59,13 @@ class QuestionGroup {
       answerScore: answerScore,
       trainLineList: trainLineList,
     );
+  }
+
+  bool? getAnswerResultFromQuestion(String questionCode) {
+    Question question = questionList.firstWhere(
+      (question) => question.questionCode == questionCode,
+    );
+    return question.answer.answerResult;
   }
 
   QuestionGroup countAnswerScore() {

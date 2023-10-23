@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:interactive_viewer_01/presentation/controller/get_question_list_controller.dart';
+import 'package:interactive_viewer_01/ui/provider/is_all_answer_finished_provider.dart';
 import 'package:interactive_viewer_01/ui/widget/train_line_question/component/train_line_map_interactive_viewer.dart';
 
 class TrainLineQuestionScreen extends ConsumerStatefulWidget {
@@ -31,6 +32,9 @@ class _TrainLineQuestionScreenState extends ConsumerState<TrainLineQuestionScree
       widget.getQuestionListController.handle(
         widget.questionGroupCode,
       );
+
+      // 状態の初期化(状態の監視をしていないので、autoDisposeをつけると毎回の読み取り時に初期化されてしまう)
+      ref.read(isAllAnswerFinishedProvider.notifier).state = false;
     });
   }
 

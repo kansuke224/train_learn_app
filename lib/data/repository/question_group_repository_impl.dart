@@ -8,4 +8,10 @@ class QuestionGroupRepositoryImpl implements QuestionGroupRepository {
     int bestAnswerScore = prefs.getInt(questionGroupCode) ?? 0;
     return bestAnswerScore;
   }
+
+  @override
+  Future<void> updateBestScore(String questionGroupCode, int bestScore) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    prefs.setInt(questionGroupCode, bestScore);
+  }
 }

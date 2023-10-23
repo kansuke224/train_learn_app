@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:interactive_viewer_01/presentation/enum/answer_result.dart';
 import 'package:interactive_viewer_01/presentation/view_model/get_question_list_view_model.dart';
 import 'package:interactive_viewer_01/ui/provider/question_answer_result_provider.dart';
 import 'package:interactive_viewer_01/ui/style/station_button_style.dart';
@@ -57,8 +58,6 @@ class StationButton extends ConsumerWidget {
 
   // 駅押下時の処理
   handleOnPressed(BuildContext context, GetQuestionListViewModel question) {
-    // 選択中のQuestionCodeを更新
-    // ref.read(selectedQuestionCodeProvider.notifier).state = questionCode;
     // ボトムシート表示
     showModalBottomSheet(
       context: context,

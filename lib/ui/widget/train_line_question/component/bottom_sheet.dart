@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:interactive_viewer_01/presentation/enum/answer_result.dart';
 import 'package:interactive_viewer_01/presentation/view_model/get_question_list_view_model.dart';
+import 'package:interactive_viewer_01/ui/provider/di/answer_question_controller_provider.dart';
+import 'package:interactive_viewer_01/ui/provider/is_all_answer_finished_provider.dart';
 import 'package:interactive_viewer_01/ui/provider/question_answer_result_provider.dart';
 import 'package:interactive_viewer_01/ui/style/train_line_color.dart';
+import 'package:interactive_viewer_01/ui/widget/train_line_question/component/answer_result_list_dialog.dart';
 
 class BottomSheetContent extends StatefulWidget {
   const BottomSheetContent({
@@ -135,7 +139,7 @@ class BottomSheetBottom extends HookConsumerWidget {
     // 解答結果の判定が終わった後の処理
     ref.listen(
       questionAnswerResultProvider(question.questionCode),
-      (previous, next) => handleAnswerResultChange(context, next),
+      (previous, next) => handleAnswerResultChange(context, ref, next),
     );
 
     return Row(
@@ -172,64 +176,32 @@ class BottomSheetBottom extends HookConsumerWidget {
     BuildContext context,
     WidgetRef ref,
   ) {
-    // controllerに解答処理を投げるだけ
-    // 下の処理はref.listenで解答結果を監視して処理を実行する
-
-    // // 選択中のQuestionCodeを取得
-    // QuestionCode questionCode = ref.read(selectedQuestionCodeProvider)!;
-    // // 解答
-    // ref.read(stationQuestionGroupProvider.notifier).setAnswer(questionCode, answerNameController.text);
-    // // 解答結果を取得
-    // bool answerResult = ref.read(selectedStationQuestionProvider)!.answer.answerResult!;
-
-    // // 正解・不正解 表示
-    // showDialog(
-    //   context: context,
-    //   barrierColor: Colors.transparent,
-    //   builder: (context) {
-    //     return Icon(
-    //       answerResult ? Icons.circle_outlined : Icons.close,
-    //       size: 100,
-    //       color: answerResult ? Colors.green : Colors.red,
-    //     );
-    //   },
-    // );
-
-    // // 1秒後に正解・不正解を非表示
-    // Future.delayed(
-    //   const Duration(milliseconds: 1000),
-    //   () {
-    //     // テキストフィールドのフォーカスを外す(ダイアログを閉じる前にキーボードを消すため)
-    //     FocusManager.instance.primaryFocus?.unfocus();
-    //     // 正解・不正解を非表示
-    //     Navigator.of(context).pop();
-    //     // 正解であればボトムシートも非表示
-    //     // if (answerResult) Navigator.of(context).pop();
-    //     Navigator.of(context).pop();
-
-    //     // 問題全体で解答が完了したか判定
-    //     if (ref.read(stationQuestionGroupProvider)!.isAnswerFinished()) {
-    //       // 解答が完了している場合
-    //       // 正当数を計算
-    //       ref.read(stationQuestionGroupProvider.notifier).countAnswerScore();
-    //       // 解答結果のダイアログを表示する
-    //       showDialog(
-    //         context: context,
-    //         builder: (context) {
-    //           return AnswerResultDialog();
-    //         },
-    //       );
-    //     }
-    //   },
-    // );
+    // controllerに解答処理を投げる
+    ref.read(answerQuestionControllerProvider)!.handle(
+          question.questionCode,
+          answerNameController.text,
+        );
   }
 
-  void handleAnswerResultChange(BuildContext context, AnswerResult answerResult) {
+  // 解答結果がviewChangerで変更された際の処理
+  void handleAnswerResultChange(
+    BuildContext context,
+    WidgetRef ref,
+    AnswerResult answerResult,
+  ) {
+    // 正解・不正解 表示
     showAnswerResultDialog(context, answerResult);
+    // 一秒後に正解・不正解とボトムシートを閉じる
     Future.delayed(
       const Duration(milliseconds: 1000),
       () {
-        hideBottomSheet(context);
+        bool isAllAnswerFinished = ref.read(isAllAnswerFinishedProvider);
+
+        hideAnswerResultDialogAndBottomSheet(context);
+        // 全ての解答が終了している場合は解答結果ダイアログ表示
+        if (isAllAnswerFinished) {
+          showAnswerResultListDialog(context);
+        }
       },
     );
   }
@@ -239,6 +211,7 @@ class BottomSheetBottom extends HookConsumerWidget {
     showDialog(
       context: context,
       barrierColor: Colors.transparent,
+      barrierDismissible: false,
       builder: (context) {
         return Icon(
           answerResult == AnswerResult.correct ? Icons.circle_outlined : Icons.close,
@@ -249,77 +222,29 @@ class BottomSheetBottom extends HookConsumerWidget {
     );
   }
 
-  void hideBottomSheet(BuildContext context) {
+  // 正解・不正解とボトムシートを閉じる
+  void hideAnswerResultDialogAndBottomSheet(BuildContext context) {
     // テキストフィールドのフォーカスを外す(ダイアログを閉じる前にキーボードを消すため)
-    FocusManager.instance.primaryFocus?.unfocus();
+    FocusNode? focus = FocusManager.instance.primaryFocus;
+    if (focus != null) {
+      focus.unfocus();
+    }
     // 正解・不正解とボトムシートを非表示
-    Navigator.of(context).popUntil(ModalRoute.withName("/question"));
+    // どっちの記述でもいいらしい
+    // Navigator.of(context).popUntil(ModalRoute.withName("/question"));
+    Navigator.of(context).popUntil((route) {
+      return route.settings.name == "/question";
+    });
+  }
+
+  // 解答結果リストダイアログ表示
+  void showAnswerResultListDialog(BuildContext context) {
+    showDialog(
+      context: context,
+      barrierDismissible: false,
+      builder: (context) {
+        return const AnswerResultListDialog();
+      },
+    );
   }
 }
-
-// class AnswerResultDialog extends ConsumerWidget {
-//   const AnswerResultDialog({
-//     super.key,
-//   });
-
-//   @override
-//   Widget build(BuildContext context, WidgetRef ref) {
-//     StationQuestionGroup stationQuestionGroup = ref.read(stationQuestionGroupProvider)!;
-//     return AlertDialog(
-//       title: const Text("解答終了"),
-//       content: Scrollbar(
-//         thumbVisibility: true,
-//         child: SingleChildScrollView(
-//           child: Column(
-//             crossAxisAlignment: CrossAxisAlignment.start,
-//             mainAxisSize: MainAxisSize.min,
-//             children: [
-//               Text("${stationQuestionGroup.questionMap.length}問中 ${stationQuestionGroup.answerScore.thisScore}問 正解"),
-//               for (StationQuestion stationQuestion in stationQuestionGroup.questionMap.values)
-//                 Row(
-//                   crossAxisAlignment: CrossAxisAlignment.center,
-//                   children: [
-//                     SizedBox(
-//                       width: 35,
-//                       child: Text(stationQuestion.station.shortNameList[0]),
-//                     ),
-//                     const Text(":"),
-//                     const SizedBox(width: 5),
-//                     stationQuestion.answer.answerResult ?? false
-//                         ? const Icon(
-//                             Icons.circle_outlined,
-//                             color: Colors.green,
-//                             size: 15,
-//                           )
-//                         : const Icon(
-//                             Icons.close,
-//                             color: Colors.red,
-//                             size: 15,
-//                           ),
-//                     const SizedBox(width: 3),
-//                     Text(
-//                       "${stationQuestion.station.name} 駅",
-//                       style: TextStyle(
-//                         color: stationQuestion.answer.answerResult ?? false ? Colors.green : Colors.red,
-//                       ),
-//                     ),
-//                   ],
-//                 ),
-//             ],
-//           ),
-//         ),
-//       ),
-//       actions: [
-//         TextButton(
-//           onPressed: () {
-//             // ベストスコアの値をquestionGroupListへ再セット
-//             ref.invalidate(questionGroupListProvider);
-//             // 一覧画面まで戻る
-//             Navigator.popUntil(context, (route) => route.isFirst);
-//           },
-//           child: const Text('OK'),
-//         ),
-//       ],
-//     );
-//   }
-// }
