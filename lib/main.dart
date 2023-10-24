@@ -17,6 +17,8 @@ import 'package:interactive_viewer_01/presentation/presenter/get_question_list_p
 import 'package:interactive_viewer_01/presentation/view_model/get_question_group_list_view_model.dart';
 import 'package:interactive_viewer_01/ui/provider/di/answer_question_controller_provider.dart';
 import 'package:interactive_viewer_01/ui/provider/di/get_entire_answer_result_controller_provider.dart';
+import 'package:interactive_viewer_01/ui/provider/selected_question_group_code_provider.dart';
+import 'package:interactive_viewer_01/ui/style/question_group_color.dart';
 import 'package:interactive_viewer_01/ui/view_changer/answer_question_view_changer.dart';
 import 'package:interactive_viewer_01/ui/view_changer/get_entire_answer_result_view_changer.dart';
 import 'package:interactive_viewer_01/ui/view_changer/get_question_group_list_view_changer.dart';
@@ -42,15 +44,16 @@ class MyApp extends StatelessWidget {
     return ProviderScope(
       child: Consumer(
         builder: (context, ref, child) {
+          String selectedQuestionGropuCode = ref.watch(selectedQuestionGroupCodeProvider);
+          ColorScheme? colorScheme = questionGroupColorSchemeMap[selectedQuestionGropuCode];
           return MaterialApp(
             title: "Flutter Demo",
-            theme: ThemeData(),
+            theme: ThemeData(
+              useMaterial3: true,
+              colorScheme: colorScheme,
+              textTheme: Theme.of(context).textTheme.apply(bodyColor: const Color(0xFF535353)),
+            ),
             debugShowCheckedModeBanner: false,
-            // initialRoute: "/",
-            // routes: {
-            //   "/": (context) => _getTrainLineQuestionListScreen(ref),
-            //   "/question": (context) => _getTrainLineQuestionScreen(ref),
-            // },
             onGenerateRoute: (settings) {
               if (settings.name == "/") {
                 return _questonGroupListRoute(ref);

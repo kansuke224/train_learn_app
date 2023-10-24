@@ -3,6 +3,8 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:interactive_viewer_01/presentation/controller/get_question_group_list_controller.dart';
 import 'package:interactive_viewer_01/presentation/view_model/get_question_group_list_view_model.dart';
 import 'package:interactive_viewer_01/ui/provider/question_group_list_provider.dart';
+import 'package:interactive_viewer_01/ui/style/question_group_color.dart';
+import 'package:interactive_viewer_01/ui/widget/train_line_question_list/component/question_group_list.dart';
 
 class TrainLineQuestionListScreen extends ConsumerStatefulWidget {
   const TrainLineQuestionListScreen({
@@ -28,47 +30,27 @@ class _TrainLineQuestionListScreenState extends ConsumerState<TrainLineQuestionL
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("路線図問題一覧"),
+        scrolledUnderElevation: 0,
+        elevation: 0,
       ),
-      body: Consumer(
-        builder: (context, ref, child) {
-          // 路線図問題一覧(取得が終わるまではnull)
-          final questionGroupList = ref.watch(questionGroupListProvider);
-          // 以下の制御だとloadingは制御できるけど、errorが制御できないよな、、、
-          // AsyncValueとか使ってみるか
-          if (questionGroupList == null) {
-            // 取得中はローディング表示
-            return const Center(
-              child: CircularProgressIndicator(),
-            );
-          } else {
-            // 取得完了したらリスト表示
-            return ListView(
-              children: [
-                for (final questionGroup in questionGroupList)
-                  ListTile(
-                    onTap: () => onQuestionGroupSelected(context, questionGroup),
-                    title: Text(questionGroup.questionName),
-                    subtitle: Text(questionGroup.bestScoreText),
-                    trailing: const Icon(Icons.arrow_right),
-                  )
-              ],
-            );
-          }
-        },
+      body: const Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Padding(
+            padding: EdgeInsets.only(left: 24),
+            child: Text(
+              "路線図クイズ",
+              style: TextStyle(
+                fontSize: 20,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          ),
+          Expanded(
+            child: QuestionGroupList(),
+          ),
+        ],
       ),
-    );
-  }
-
-  // 問題選択時の処理
-  onQuestionGroupSelected(
-    BuildContext context,
-    GetQuestionGroupListViewModel questionGroup,
-  ) async {
-    // 問題画面へ繊維
-    Navigator.of(context).pushNamed(
-      "/question",
-      arguments: questionGroup,
     );
   }
 }

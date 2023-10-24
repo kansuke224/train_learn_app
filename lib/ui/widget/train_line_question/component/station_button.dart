@@ -44,7 +44,7 @@ class StationButton extends ConsumerWidget {
               ),
             ),
           ),
-          backgroundColor: Colors.white,
+          backgroundColor: Theme.of(context).colorScheme.background,
           side: BorderSide(
             color: buttonStyle.color,
             width: 3.0,

@@ -142,3 +142,120 @@ List<StationMaster> midosujiStationMaster = [
     trainLineList: [(trainLine: midosujiLine, stationShortName: "M30")],
   ),
 ];
+
+List<StationMaster> tanimachiStationMaster = [
+  StationMaster(
+    questionCode: QuestionCode.dainichi.name,
+    name: "大日",
+    trainLineList: [(trainLine: tanimachiLine, stationShortName: "T11")],
+  ),
+];
+
+List<StationMaster> yotsubashiStationMaster = [
+  StationMaster(
+    questionCode: QuestionCode.nishiUmeda.name,
+    name: "西梅田",
+    trainLineList: [(trainLine: yotsubashiLine, stationShortName: "Y11")],
+  ),
+  StationMaster(
+    questionCode: QuestionCode.higobashi.name,
+    name: "肥後橋",
+    trainLineList: [(trainLine: yotsubashiLine, stationShortName: "Y12")],
+  ),
+  StationMaster(
+    questionCode: QuestionCode.hommachiY.name,
+    name: "本町",
+    trainLineList: [
+      (trainLine: yotsubashiLine, stationShortName: "Y13"),
+      (trainLine: midosujiLine, stationShortName: "M17"),
+      (trainLine: chuoLine, stationShortName: "C16"),
+    ],
+  ),
+  StationMaster(
+    questionCode: QuestionCode.yotsubashi.name,
+    name: "四ツ橋",
+    trainLineList: [(trainLine: yotsubashiLine, stationShortName: "Y14")],
+  ),
+  StationMaster(
+    questionCode: QuestionCode.nambaY.name,
+    name: "なんば",
+    trainLineList: [
+      (trainLine: yotsubashiLine, stationShortName: "Y15"),
+      (trainLine: midosujiLine, stationShortName: "M20"),
+      (trainLine: sennichimaeLine, stationShortName: "S16"),
+    ],
+  ),
+  StationMaster(
+    questionCode: QuestionCode.daikokuchoY.name,
+    name: "大国町",
+    trainLineList: [
+      (trainLine: yotsubashiLine, stationShortName: "Y16"),
+      (trainLine: midosujiLine, stationShortName: "M21"),
+    ],
+  ),
+  StationMaster(
+    questionCode: QuestionCode.hanazonocho.name,
+    name: "花園町",
+    trainLineList: [(trainLine: yotsubashiLine, stationShortName: "Y17")],
+  ),
+  StationMaster(
+    questionCode: QuestionCode.kishinosato.name,
+    name: "岸里",
+    trainLineList: [(trainLine: yotsubashiLine, stationShortName: "Y18")],
+  ),
+  StationMaster(
+    questionCode: QuestionCode.tamade.name,
+    name: "玉出",
+    trainLineList: [(trainLine: yotsubashiLine, stationShortName: "Y19")],
+  ),
+  StationMaster(
+    questionCode: QuestionCode.kitakagaya.name,
+    name: "北加賀屋",
+    trainLineList: [(trainLine: yotsubashiLine, stationShortName: "Y20")],
+  ),
+  StationMaster(
+    questionCode: QuestionCode.suminoekoen.name,
+    name: "住之江公園",
+    trainLineList: [(trainLine: yotsubashiLine, stationShortName: "Y21")],
+  ),
+];
+
+List<StationMaster> chuoStationMaster = [
+  StationMaster(
+    questionCode: QuestionCode.cosmosquare.name,
+    name: "コスモスクエア",
+    trainLineList: [(trainLine: chuoLine, stationShortName: "C10")],
+  ),
+];
+
+List<StationMaster> sennichimaeStationMaster = [
+  StationMaster(
+    questionCode: QuestionCode.nodahanshin.name,
+    name: "野田阪神",
+    trainLineList: [(trainLine: sennichimaeLine, stationShortName: "S11")],
+  ),
+];
+
+List<StationMaster> sakaisujiStationMaster = [
+  StationMaster(
+    questionCode: QuestionCode.tenjimbashisuji6Chome.name,
+    name: "天神橋筋六丁目",
+    trainLineList: [(trainLine: sakaisujiLine, stationShortName: "S11")],
+  ),
+];
+
+List<StationMaster> nagahoriTsurumiRyokuchiStationMaster = [
+  StationMaster(
+    questionCode: QuestionCode.taisho.name,
+    name: "大正",
+    trainLineList: [(trainLine: nagahoriTsurumiRyokuchiLine, stationShortName: "N11")],
+  ),
+];
+
+List<StationMaster> imazatosujiStationMaster = [
+  StationMaster(
+    questionCode: QuestionCode.itakano.name,
+    name: "井高野",
+    trainLineList: [(trainLine: imazatosujiLine, stationShortName: "N11")],
+  ),
+];

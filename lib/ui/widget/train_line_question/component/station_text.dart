@@ -24,7 +24,7 @@ class StationText extends ConsumerWidget {
     Color textColor;
     if (answerResult == AnswerResult.unAnswerd) {
       stationText = question.trainLineList[0].stationShortName;
-      textColor = Colors.black;
+      textColor = Theme.of(context).colorScheme.onBackground;
     } else if (answerResult == AnswerResult.correct) {
       stationText = question.stationName;
       textColor = Colors.green;
@@ -37,7 +37,10 @@ class StationText extends ConsumerWidget {
       stationText,
       style: TextStyle(
         color: textColor,
-        fontWeight: FontWeight.bold,
+        shadows: const [
+          BoxShadow(color: Colors.white, blurRadius: 5, spreadRadius: 5),
+        ],
+        fontWeight: FontWeight.w600,
       ),
     );
   }
