@@ -1,16 +1,44 @@
-# interactive_viewer_01
 
-A new Flutter project.
+<div align="center">
+    <h2>路線図クイズアプリ</h2>
+    <img src="その他ファイル/アプリ動作.GIF">
+</div>
 
-## Getting Started
+## 使用技術
+Flutter/Dart
 
-This project is a starting point for a Flutter application.
+## 内部設計
+アーキテクチャはクリーンアーキテクチャを採用しています
+### レイヤー構造
+<img src="その他ファイル/レイヤー構造.png">
 
-A few resources to get you started if this is your first Flutter project:
+- domain層<br>
+ビジネスルールを定義する
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+- application層<br>
+domain層で定義したビジネスルールを制御する
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+- presentation層<br>
+ui層からの入力の受け取りと、ui層への出力の受け渡しを行う
+
+- ui層<br>
+画面描画に関する処理を定義する<br>
+Flutterやriverpod等、画面描画に関するフレームワークやライブラリに依存するのはui層だけ
+
+- data層<br>
+データの取得、更新処理を行う
+
+### クラス図
+クリーンアーキテクチャ書籍のクラス構成をほとんどそのまま採用しています
+<img src="その他ファイル/クラス構成.png">
+
+### 今後やりたいこと
+- 対応路線の追加
+- 単体テスト、Widgetテスト、統合テストの実装
+- クラス構成の見直し<br>
+現在のクラス構成だと、1つの機能に対してのクラス数がかなり多いので、実装に時間がかかる<br>
+クリーンアーキテクチャの考え方に反しない程度にクラスを統合できないか考えたい
+
+## AppStore Url
+**https://apps.apple.com/jp/app/%E8%B7%AF%E7%B7%9A%E5%9B%B3%E3%82%AF%E3%82%A4%E3%82%BA/id6469034225?platform=iphone**
+
