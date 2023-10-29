@@ -142,32 +142,42 @@ class BottomSheetBottom extends HookConsumerWidget {
       (previous, next) => handleAnswerResultChange(context, ref, next),
     );
 
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.end,
-      children: [
-        Consumer(
-          builder: (context, ref, child) {
-            // 解答結果を取得
-            AnswerResult answerResult = ref.watch(questionAnswerResultProvider(question.questionCode));
-            // 解答後
-            return answerResult == AnswerResult.unCorrect
-                ? Text(
-                    '正解 「${question.stationName}」駅',
-                    style: const TextStyle(color: Colors.red),
-                  )
-                : const Spacer();
-          },
-        ),
-        const Spacer(),
-        TextButton(
-          onPressed: () => Navigator.of(context).pop(),
-          child: const Text('キャンセル'),
-        ),
-        TextButton(
-          onPressed: () => handleOk(context, ref),
-          child: const Text('OK'),
-        ),
-      ],
+    return SizedBox(
+      width: double.infinity,
+      child: Wrap(
+        alignment: WrapAlignment.spaceBetween,
+        crossAxisAlignment: WrapCrossAlignment.center,
+        spacing: 4,
+        runSpacing: 4,
+        children: [
+          Consumer(
+            builder: (context, ref, child) {
+              // 解答結果を取得
+              AnswerResult answerResult = ref.watch(questionAnswerResultProvider(question.questionCode));
+              // 解答後
+              return answerResult == AnswerResult.unCorrect
+                  ? Text(
+                      '正解 「${question.stationName}」駅',
+                      style: const TextStyle(color: Colors.red),
+                    )
+                  : const Text("");
+            },
+          ),
+          Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              TextButton(
+                onPressed: () => Navigator.of(context).pop(),
+                child: const Text('キャンセル'),
+              ),
+              TextButton(
+                onPressed: () => handleOk(context, ref),
+                child: const Text('OK'),
+              ),
+            ],
+          ),
+        ],
+      ),
     );
   }
 

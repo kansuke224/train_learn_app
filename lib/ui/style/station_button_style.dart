@@ -73,15 +73,15 @@ Map<String, StationButtonStyle> stationButtonStyleMap = {
     color: CustomColor.midosujiLineColor,
   ),
   QuestionCode.shinOsaka.name: StationButtonStyle.circle(
-    centerPosition: const Offset(1235, 1088),
+    centerPosition: const Offset(1236, 1088),
     color: CustomColor.midosujiLineColor,
   ),
   QuestionCode.nishinakajimaMinamigata.name: StationButtonStyle.circle(
-    centerPosition: const Offset(1235, 1128),
+    centerPosition: const Offset(1236, 1128),
     color: CustomColor.midosujiLineColor,
   ),
   QuestionCode.nakatsu.name: StationButtonStyle.circle(
-    centerPosition: const Offset(1230, 1221),
+    centerPosition: const Offset(1231, 1221),
     color: CustomColor.midosujiLineColor,
   ),
   QuestionCode.umeda.name: StationButtonStyle.circle(
@@ -98,7 +98,7 @@ Map<String, StationButtonStyle> stationButtonStyleMap = {
     width: 45,
   ),
   QuestionCode.shinsaibashi.name: StationButtonStyle.circle(
-    centerPosition: const Offset(1245, 1442),
+    centerPosition: const Offset(1246, 1442),
     color: CustomColor.midosujiLineColor,
   ),
   QuestionCode.namba.name: StationButtonStyle.square(
@@ -107,20 +107,20 @@ Map<String, StationButtonStyle> stationButtonStyleMap = {
     width: 45,
   ),
   QuestionCode.daikokucho.name: StationButtonStyle.square(
-    centerPosition: const Offset(1225, 1554),
+    centerPosition: const Offset(1226, 1554),
     color: CustomColor.midosujiLineColor,
     width: 30,
   ),
   QuestionCode.dobutsuenMae.name: StationButtonStyle.circle(
-    centerPosition: const Offset(1256, 1598),
+    centerPosition: const Offset(1256, 1599),
     color: CustomColor.midosujiLineColor,
   ),
   QuestionCode.tennoji.name: StationButtonStyle.circle(
-    centerPosition: const Offset(1302, 1612),
+    centerPosition: const Offset(1302, 1613),
     color: CustomColor.midosujiLineColor,
   ),
   QuestionCode.showacho.name: StationButtonStyle.circle(
-    centerPosition: const Offset(1323, 1711),
+    centerPosition: const Offset(1324, 1711),
     color: CustomColor.midosujiLineColor,
   ),
   QuestionCode.nishitanabe.name: StationButtonStyle.circle(
@@ -140,11 +140,89 @@ Map<String, StationButtonStyle> stationButtonStyleMap = {
     color: CustomColor.midosujiLineColor,
   ),
   QuestionCode.shinkanaoka.name: StationButtonStyle.circle(
-    centerPosition: const Offset(1318, 2087),
+    centerPosition: const Offset(1319, 2087),
     color: CustomColor.midosujiLineColor,
   ),
   QuestionCode.nakamozu.name: StationButtonStyle.circle(
     centerPosition: const Offset(1271, 2159),
     color: CustomColor.midosujiLineColor,
+  ),
+  // 谷町線
+  QuestionCode.dainichi.name: StationButtonStyle.circle(
+    centerPosition: const Offset(1621, 1005),
+    color: CustomColor.tanimachiLineColor,
+  ),
+  // 四つ橋線
+  QuestionCode.nishiUmeda.name: StationButtonStyle.circle(
+    centerPosition: const Offset(1216, 1290),
+    color: CustomColor.yotsubashiLineColor,
+  ),
+  QuestionCode.higobashi.name: StationButtonStyle.circle(
+    centerPosition: const Offset(1222, 1349),
+    color: CustomColor.yotsubashiLineColor,
+  ),
+  QuestionCode.hommachiY.name: StationButtonStyle.square(
+    centerPosition: const Offset(1234, 1417),
+    color: CustomColor.yotsubashiLineColor,
+    width: 45,
+  ),
+  QuestionCode.yotsubashi.name: StationButtonStyle.circle(
+    centerPosition: const Offset(1222, 1452),
+    color: CustomColor.yotsubashiLineColor,
+  ),
+  QuestionCode.nambaY.name: StationButtonStyle.square(
+    centerPosition: const Offset(1233, 1495),
+    color: CustomColor.yotsubashiLineColor,
+    width: 45,
+  ),
+  QuestionCode.daikokuchoY.name: StationButtonStyle.square(
+    centerPosition: const Offset(1225, 1554),
+    color: CustomColor.yotsubashiLineColor,
+    width: 30,
+  ),
+  QuestionCode.hanazonocho.name: StationButtonStyle.circle(
+    centerPosition: const Offset(1215, 1624),
+    color: CustomColor.yotsubashiLineColor,
+  ),
+  QuestionCode.kishinosato.name: StationButtonStyle.circle(
+    centerPosition: const Offset(1205, 1678),
+    color: CustomColor.yotsubashiLineColor,
+  ),
+  QuestionCode.tamade.name: StationButtonStyle.circle(
+    centerPosition: const Offset(1193, 1743),
+    color: CustomColor.yotsubashiLineColor,
+  ),
+  QuestionCode.kitakagaya.name: StationButtonStyle.circle(
+    centerPosition: const Offset(1137, 1764),
+    color: CustomColor.yotsubashiLineColor,
+  ),
+  QuestionCode.suminoekoen.name: StationButtonStyle.circle(
+    centerPosition: const Offset(1105, 1848),
+    color: CustomColor.yotsubashiLineColor,
+  ),
+  // 中央線
+  QuestionCode.cosmosquare.name: StationButtonStyle.circle(
+    centerPosition: const Offset(808, 1661),
+    color: CustomColor.chuoLineColor,
+  ),
+  // 千日前線
+  QuestionCode.nodahanshin.name: StationButtonStyle.circle(
+    centerPosition: const Offset(1114, 1327),
+    color: CustomColor.sennichimaeLineColor,
+  ),
+  // 堺筋線
+  QuestionCode.tenjimbashisuji6Chome.name: StationButtonStyle.circle(
+    centerPosition: const Offset(1292, 1234),
+    color: CustomColor.sakaisujiLineColor,
+  ),
+  // 長堀鶴見緑地線
+  QuestionCode.taisho.name: StationButtonStyle.circle(
+    centerPosition: const Offset(1140, 1498),
+    color: CustomColor.nagahoriTsurumiRyokuchiLineColor,
+  ),
+  // 今里筋線
+  QuestionCode.itakano.name: StationButtonStyle.circle(
+    centerPosition: const Offset(1471, 932),
+    color: CustomColor.imazatosujiLineColor,
   ),
 };
